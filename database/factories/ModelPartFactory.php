@@ -13,7 +13,6 @@ class ModelPartFactory extends Factory
      * @var string
      */
     protected $model = ModelPart::class;
-
     /**
      * Define the model's default state.
      *
@@ -21,8 +20,9 @@ class ModelPartFactory extends Factory
      */
     public function definition()
     {
+        static $i = 1;
         return [
-            'model_id' => rand(1, 30),
+            'model_id' => $i++,
             'name' => ['Protetor de carter', 'Filtro de òleo', 'Filtro de ac', 'òleo'][rand(0, 3)],
             'price' => rand(12, 57) / 10
         ];
