@@ -21,11 +21,12 @@ class ModelFactory extends Factory
      */
     public function definition()
     {
-        $this->faker->addProvider(new \Faker\Provider\CarData($this->faker));
-
+        $cars = json_decode(file_get_contents(base_path('database/factories/cars.json')), true);
+        $m = $cars[mt_rand(0, 70)]['models'];
+        // dd($m[1]);
         return [
             'brand_id' => rand(1, 10),
-            'name' => $this->faker->lastName
+            'name' => $m[mt_rand(0, count($m) - 1)]['title']
         ];
     }
 }

@@ -11,10 +11,10 @@ class BrandFactory extends Factory
 
     public function definition()
     {
-        $this->faker->addProvider(new \Faker\Provider\CarData($this->faker));
+        $cars = json_decode(file_get_contents(base_path('database/factories/cars.json')), true);
 
         return [
-            'name' => $this->faker->firstNameMale
+            'name' => $cars[mt_rand(0, 70)]['title']
         ];
     }
 }

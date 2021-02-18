@@ -21,8 +21,6 @@ class ModelPartFactory extends Factory
      */
     public function definition()
     {
-        $this->faker->addProvider(new \Faker\Provider\CarData($this->faker));
-
         return [
             'model_id' => rand(1, 30),
             'name' => ['Protetor de carter', 'Filtro de òleo', 'Filtro de ac', 'òleo'][rand(0, 3)],
