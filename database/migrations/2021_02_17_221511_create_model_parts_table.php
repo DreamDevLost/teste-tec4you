@@ -15,7 +15,7 @@ class CreateModelPartsTable extends Migration
     {
         Schema::create('model_parts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('model_id');
+            $table->foreignId('model_id')->constrained();
             $table->string('name');
             $table->float('price');
             $table->timestamps();

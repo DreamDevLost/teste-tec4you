@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,7 +14,7 @@ class BrandFactory extends Factory
         $this->faker->addProvider(new \Faker\Provider\CarData($this->faker));
 
         return [
-            'name' => $this->faker->vehicleBrand
+            'name' => $this->faker->firstNameMale
         ];
     }
 }

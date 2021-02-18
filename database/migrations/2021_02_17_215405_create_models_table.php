@@ -15,8 +15,8 @@ class CreateModelsTable extends Migration
     {
         Schema::create('models', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('brand_id')->constrained();
             $table->string('name');
-            // $table->foreignId('model_part_id')->constrained();
             $table->timestamps();
         });
     }
