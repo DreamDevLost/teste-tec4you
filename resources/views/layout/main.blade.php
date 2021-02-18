@@ -6,9 +6,7 @@
 <body>
     @include('layout.partials.navbar')
     @include('layout.partials.header')
-    <div class="p-3 d-block">
-        @yield('content')
-    </div>`
+    @yield('content')
     @include('layout.partials.footer')
     @include('layout.partials.footer-scripts')
 </body>
