@@ -34,7 +34,23 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+
+                return response()->json([
+                    'message' => 'Record not found',
+                ], 404);
+            }
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Registro não encontrado.',
+                ], 404);
+            }
+        }
     }
 }
