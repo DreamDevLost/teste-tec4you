@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Brand extends Model
+class Brand extends EloquentModel
 {
     use HasFactory;
 
     public function models()
     {
-        $this->hasMany(Model::class);
+        return $this->hasMany(Model::class);
+    }
+
+    public function parts()
+    {
+        return $this->hasManyThrough(ModelPart::class, Model::class);
     }
 }
