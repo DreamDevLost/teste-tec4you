@@ -7,11 +7,19 @@
 <div class="mt-5 container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if($success == 1)
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Pedido enviado com sucesso!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">Selecione a peça desejada!</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/store">
+                    <form method="POST" action="{{ route('store') }}">
                         @csrf
                         @livewire('products', ['errors'=> $errors])
                         <div class="form-group row">

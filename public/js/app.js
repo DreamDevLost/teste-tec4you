@@ -1842,9 +1842,18 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+window.$ = $;
+window.jQuery = $;
 
 __webpack_require__(/*! bootstrap/dist/js/bootstrap.bundle */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
+
+window.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function () {
+    jQuery(".alert").alert("close");
+  }, 2000);
+});
 
 /***/ }),
 
