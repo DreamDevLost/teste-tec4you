@@ -2,6 +2,8 @@
 
 return [
 
+    'email_destination' => env('EMAIL_DESTINO', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
