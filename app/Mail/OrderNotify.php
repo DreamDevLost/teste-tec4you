@@ -19,10 +19,7 @@ class OrderNotify extends Mailable
      */
     public function __construct(ModelPart $part, $message)
     {
-        $this->brand = $part->model->brand->name;
-        $this->model = $part->model->name;
-        $this->part = $part->name;
-        $this->price = $part->price;
+        $this->part = $part;
         $this->message = $message;
     }
 
@@ -34,11 +31,11 @@ class OrderNotify extends Mailable
     public function build()
     {
         return $this->markdown('email.orders.notify', [
-            'brand' => $this->brand,
-            'model' => $this->model,
-            'part' => $this->part,
-            'price' => $this->price,
+            'brand' => $this->part->model->brand->name,
+            'model' => $this->part->model->name,
+            'part' => $this->part->name,
+            'price' => $this->part->price,
             'message' => $this->message
-        ]);
+        ])->subject('Notificação de pedido');
     }
 }
