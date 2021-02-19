@@ -1,10 +1,14 @@
 <?php
 
+use App\Events\OrderMake;
+use App\Http\Requests\OrderApiRequest;
+use App\Mail\OrderNotify;
 use App\Models\Brand;
 use App\Models\Model;
 use App\Models\ModelPart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +21,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('order', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'part_id' => 'required|numeric',
+        'message' => 'required|string'
+    ], [
+        'required'  => "O parâmetro ':attribute' é necessário.",
+        'numeric'   => "O parâmetro ':attribute precisam ser numérico.'",
+        'string'    => "O parâmetro ':attribute' precisam ser uma string.'"
+    ]);
+    if ($validator->fails()) {
+        return response()->json([
+            'error'     => true,
+            'message'  => $validator->getMessageBag()->getMessages()
+        ], 500);
+    } else {
+        OrderMake::dispatch(ModelPart::findOrFail($request->post('part_id')), $request->post('message'));
+        return response()->json([
+            'error'     => false,
+            'message'   => 'O pedido foi feito com sucesso.'
+        ]);
+    }
+
+});
 
 Route::prefix('brands')->group(function () {
     Route::get('/', function () {
