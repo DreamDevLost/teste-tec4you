@@ -22,9 +22,6 @@ class Products extends Component
         $this->brands = Brand::all();
         $this->models = collect();
         $this->parts = collect();
-        // if (!is_null($this->selectedBrand)) {
-        //     $this->models = Model::
-        // }
     }
 
     public function render()
@@ -42,9 +39,6 @@ class Products extends Component
     {
         if (!is_null($this->selectedModel)) {
             $this->parts = ModelPart::where('model_id', $model)->get();
-
         }
-        // if (!is_null($this->selectedModel)) {
-        // }
     }
 }
