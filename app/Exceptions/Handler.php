@@ -43,14 +43,14 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e)
-    {
-        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'message' => 'Registro não encontrado.',
-                ], 404);
-            }
-        }
-    }
+    // public function render($request, Throwable $e)
+    // {
+    //     if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+    //         if ($request->expectsJson()) {
+    //             return response()->json([
+    //                 'message' => 'Registro não encontrado.',
+    //             ], 404);
+    //         }
+    //     }
+    // }
 }
