@@ -2,11 +2,15 @@
 
 Este repositório contém o código para o teste de admissão da empresa tec4you.
 ## Usando o projeto
-
-Primeiramente crie e edite o arquivo .env com as suas informções do banco de dados:
+Primeiramente clone o repositório com:
+```bash
+git clone https://github.com/DreamDevLost/teste-tec4you.git
+```
+Execute o seguinte comando para copiar o .env.example para .env:
 ```bash
 php -r copy('.env.example', '.env');
 ```
+Agora atualize o arquivo .env com as credenciais do banco de dados, servidor smtp e o email de destino.<br><br>
 Faça as migrações com seeds:
 ```bash
 php artisan migrate:fresh --seed
@@ -24,7 +28,29 @@ Agora inicie o projeto:
 php artisan serve
 ```
 
-## Rotas API 
+## Rotas API
+### Em caso de erro a API retornará o seguinte json como exemplo:
+```json
+{
+    "error": true,
+    "message": {
+        "part_id": [
+            "O parâmetro 'part id precisam ser numérico.'"
+        ]
+    }
+}
+```
+___
+```
+POST /api/order
+```
+Faz o pedido da peça com uma mensagem:<br>
+Parâmetros em form-data: 
+```
+part_id: ID de uma peça | Campo obrigatório
+message: texto          | Campo obrigatório
+```
+_________
 ```
 GET /api/brands
 ```
